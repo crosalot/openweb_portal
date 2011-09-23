@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css"/>
+    </head>
+    <body>
+        <div id="site-wrapper">
+            <div id="site-name"><h1><a href="{% url home %}">OpenWeb.in.th</a></h1></div>
+        </div>
+        <div id="user-wrapper">
+            {% if user.is_authenticated %}
+            <div class="logged-in">
+                <span>Hello {{ user.username }}<span>
+                <a class="accounts-logout" href="/accounts/logout/">Sign out</a>
+            </div>
+            {% else %}
+            <div class="logged-out">
+                <a class="accounts-login" href="/accounts/login/">Sign in</a>
+                <a class="accounts-register" href="/accounts/register/">Register</a>
+            </div>
+            {% endif %}
+        </div>
+        <div id="navi-wrapper">
+            <ul id="primary-menu">
+                <li><a href="{% url home %}"></a>Home</li>
+                <li><a href="#"></a>Feature</li>
+                <li><a href="#"></a>Example</li>
+                <li><a href="#"></a>Webboard</li>
+                <li><a href="#"></a>Blog</li>
+                <li><a href="#"></a>Document</li>
+            </ul>
+        </div>
+        <div id="container-wrapper">
+            <div id="messages-wrapper">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div id="top-wrapper">
+                {% block top %}{% endblock %}
+            </div>
+            <div id="content-wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <div id="footer-wrapper">
+            {% block footer %}{% endblock %}
+        </div>
+    </body>
+</html>
