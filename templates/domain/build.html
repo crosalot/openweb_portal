@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Building Site" %}|Openweb{% endblock %}
+
+{% block content_main %}
+<div id="build-wrapper">
+    <div id="build-progress-bar">
+        <div id="progress-wrapper">
+            <div id="progress-percent" style="width:{{ site.percent }}%;"></div>
+        </div>
+        <div id="domain-box">
+            <span class="prefix">{{ site.name }}</span><span class="suffix">.{{ domain_suffix }}</span>
+        </div>
+    </div>
+    <div id="build-desc">
+        {% trans "Please wait ..." %}
+    </div>
+    <div id="build-percent">
+        <span id="percent-value">0</span>
+        <span id="percent-suffix">%</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+var loop = setInterval (function () {
+    jQuery.getJSON('{% url get_site_percent site.name %}', {}, function (resp) {
+        $('#progress-percent').css('width', resp.percent + '%');
+        $('#percent-value').html(resp.percent);
+        if (resp.percent == 100) {
+          clearInterval(loop);
+          $('#domain-box').html('{% trans 'Go to your website click' %} >> <a href="http://{{ site.name }}.{{ domain_suffix }}">{{ site.name }}.{{ domain_suffix }}</a>')
+        }
+    });
+}, 500 );
+</script>
+{% endblock %}

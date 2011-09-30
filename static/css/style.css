@@ -1,0 +1,262 @@
+/* Base */
+body {
+  width: 960px;
+  margin: auto;
+}
+a {
+  color: #000000;
+  text-decoration: none;
+}
+ul {
+  padding: 10px;
+  margin: 0;
+}
+h2 {
+  background-color: #CCCCCC;
+  padding: 10px;
+  margin: 0 0 20px;
+}
+.clear {
+  clear: both;
+}
+#user-wrapper {
+  float: right;
+  margin: -25px 35px 10px;
+}
+#navi-wrapper {
+  background-color: #DDDDDD;
+}
+#primary-menu {
+  overflow: hidden;
+}
+#primary-menu li {
+  float: left;
+  margin: 8px;
+  list-style: none;
+}
+ul.messages {
+  border: 1px solid;
+  width: 960px;
+  margin-left: -10px;
+}
+ul.messages li {
+  list-style: none;
+  color: 222222;
+}
+ul.messages li.info {
+  color: #222222;
+}
+ul.messages li.error {
+  color: #222222;
+}
+#content-top-wrapper {
+  overflow: hidden;
+  margin: 10px 10px;
+}
+#content-top-wrapper:empty {
+  display: none;
+}
+#content-main-wrapper {
+  overflow: hidden;
+  background-color: #EEEEEE;
+  margin: 0px 10px;
+  position: relative;
+}
+.submit-wrapper input {
+  border: 1px outset;
+  background-color: #CCCCCC;
+}
+.pass-step {
+  border: 1px solid;
+  padding: 10px;
+  background-color: #F8F8F8;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.pass-label {
+  background-color: #EEEEEE;
+  border: 1px dotted;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 16px;
+}
+.pass-box {
+  float: left;
+  padding: 10px;
+}
+.pass-desc {
+  float: right;
+  padding: 10px;
+}
+.input-wrapper {
+  margin: 20px;
+}
+.input-wrapper ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.input-wrapper ul li {
+  margin: 5px 0 5px 0;
+}
+.input-wrapper ul li label {
+  width: 130px;
+  display: block;
+  float: left;
+  clear: both;
+}
+.input-wrapper ul li input {
+  width: 240px;
+}
+ul.errorlist {
+  border: 1px solid;
+  font-size: 13px;
+  padding: 0 5px;
+  margin: 10px 0px 0 -10px;
+}
+ul.errorlist li {
+  clear: both;
+}
+
+/* Specific */
+
+/* Front */
+#feature-wrapper {
+  font-size: 50px;
+  text-align: center;
+  width: 300px;
+  padding: 50px;
+  margin: 50px 85px;
+  background-color: #AAAAAA;
+}
+#opacity-wrapper {
+  position: absolute;
+  overflow: hidden;
+  padding: 10px;
+  top: 50px;
+  right: 50px;
+  background-color: #444444;
+}
+#domain-wrapper {
+  width: 320px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+#domain-name-wrapper {
+  border: 1px inset;
+  background-color: #EFEFEF;
+  padding: 10px 5px 2px;
+}
+#domain-wrapper .input-wrapper {
+  margin: 20px 10px 20px 10px;
+}
+#domain-wrapper label {
+  position: absolute;
+  color: #888888;
+}
+#domain-wrapper #domain-name {
+  width: 160px;
+  background-color: #EFEFEF;
+  border: 0px none;
+  color: #888888;
+}
+#domain-wrapper #domain-suffix {
+  float: right;
+}
+
+/* Packages */
+#pass-step-domain-box {
+  font-size: 25px;
+  padding-bottom: 0;
+  padding-top: 12px;
+}
+#pass-step-domain-box .suffix {
+  color: #777777;
+}
+#pass-step-package-box {
+  padding-top: 1px;
+}
+#package-list-wrapper {
+  overflow: hidden;
+}
+#package-list-wrapper a {
+  padding: 5px;
+  display: block;
+  float: left;
+  border: 1px solid #666666;
+  margin: 10px;
+}
+#package-list-wrapper a.active {
+  background-color: #777777;
+}
+#package-list-wrapper img {
+  float: left;
+  width: 268px;
+  background-color: #FFFFFF;
+}
+
+/* Auth */
+#auth-form #register-form,
+#auth-form #sign-in-form {
+  width: 460px;
+  float: left;
+}
+#auth-form #register-form {
+  margin-right: 10px;
+}
+#auth-form #sign-in-form {
+  margin-left: 10px;
+}
+
+
+/* Build */
+#build-wrapper {
+  margin: 10px;
+}
+#build-progress-bar {
+  position: relative;
+  height: 30px;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border: 1px outset #444444;
+}
+#progress-wrapper {
+  border: 1px inset #444444;
+}
+#progress-wrapper, #progress-percent {
+  height: 100%;
+}
+#progress-percent {
+  background-color: #555555;
+}
+#build-progress-bar #domain-box {
+  bottom: 0;
+  margin: 0 20px 12px 0;
+  position: absolute;
+  right: 0;
+}
+#build-progress-bar #domain-box {
+  color: #AAAAAA;
+  font-size: 12px;
+}
+#build-progress-bar #domain-box a {
+  color: #EEEEEE;
+  font-size: 20px;
+}
+#build-desc {
+  font-size: 30px;
+  margin: 30px 10px;
+  float: left;
+  color: #333333;
+}
+#build-percent {
+  color: #333333;
+  float: right;
+  font-size: 58px;
+  font-weight: bold;
+  margin: 0px 10px 30px 0;
+}
+#build-percent #percent-value {
+  font-size: 130px;
+}

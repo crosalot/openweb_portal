@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Register" %}|Openweb{% endblock %}
+
+{% block content_main %}
+<div id="auth-wrapper">
+    <form id="register-form" action="{% url register %}" method="POST">
+        {% csrf_token %}
+        <h2>{% trans "Register" %}</h2>
+        <div id="register-wrapper" class="input-wrapper">
+            <ul>
+            {{ register_form.as_ul }}
+            </ul>
+        </div>
+        <div class="submit-wrapper input-wrapper">
+            <input class="submit-submit" type="submit" value="{% trans "Create My Account" %}"/>
+        </div>
+    </form>
+</div>
+{% endblock %}

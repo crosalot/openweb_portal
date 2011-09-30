@@ -121,7 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'domain',
@@ -150,6 +150,8 @@ LOGGING = {
     }
 }
 
+AUTH_PROFILE_MODULE = 'domain.UserProfile'
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'openweb.in.th@gmail.com'
@@ -161,5 +163,8 @@ SYSTEM_NOREPLY_EMAIL = EMAIL_HOST_USER
 # openweb portal settings
 OW_USER     = 'openweb'
 OW_APACHE   = '/usr/sbin/apache2ctl'
+OW_AVAHI    = '/usr/local/bin/avahi-alias'
 OW_PLATFORM = '/home/openweb/platforms/'
 OW_VHOST    = '/home/openweb/vhost.d/'
+OW_SITES    = '/home/openweb/sites/'
+OW_DOMAIN   = 'openweb.local'

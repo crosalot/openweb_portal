@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Select Package" %}|Openweb{% endblock %}
+
+{% block content_top %}
+<div id="pass-step-wrapper">
+    <div id="pass-step-domain" class="pass-step">
+        <div class="pass-label">1</div>
+        <div id="pass-step-domain-box" class="pass-box">
+            <span class="prefix">{{ domain_prefix }}</span><span class="suffix">.{{ domain_suffix }}</span>
+        </div>
+        <div id="pass-step-domain-desc" class="pass-desc">
+            {% trans "Website name" %}
+        </div>
+    </div>
+    <div id="pass-step-package" class="pass-step">
+        <div class="pass-label">2</div>
+        <div id="pass-step-package-box" class="pass-box">
+             <img 
+                 src="{{ package.image.url }}" 
+                 alt="{{ package.code }}" 
+                 title="{{ package.name }}" 
+                 width="320px"
+             />
+        </div>
+        <div id="pass-step-package-desc" class="pass-desc">
+            {% trans "Package selected" %}
+        </div>
+    </div>
+</div>
+
+<div id="auth-wrapper">
+    <div id="step-3" class="step-wrapper">{# For style sheet add background image #}</div>
+    <div id="auth-form">
+        <form id="register-form" action="{% url build %}?domain={{ domain_prefix }}&package={{ package.code }}" method="POST">
+            {% csrf_token %}
+            <h2>{% trans "Register" %}</h2>
+            <div id="register-wrapper" class="input-wrapper">
+                <ul>
+                {{ register_form.as_ul }}
+                </ul>
+            </div>
+            <input type="hidden" name="domain" value="{{ domain_prefix }}" />
+            <input type="hidden" name="package" value="{{ package.code }}" />
+            <input type="hidden" name="callback" value="register" />
+            <div class="submit-wrapper input-wrapper">
+                <input class="submit-done" type="submit" value="{% trans "Done" %}"/>
+            </div>
+        </form>
+        <form id="sign-in-form" action="{% url build %}?domain={{ domain_prefix }}&package={{ package.code }}" method="POST">
+            {% csrf_token %}
+            <h2>{% trans "Sign in" %}</h2>
+            <div id="sign-in-wrapper" class="input-wrapper">
+                <ul>
+                {{ sign_in_form.as_ul }}
+                </ul>
+            </div>
+            <input type="hidden" name="domain" value="{{ domain_prefix }}" />
+            <input type="hidden" name="package" value="{{ package.code }}" />
+            <input type="hidden" name="callback" value="sign_in" />
+            <div class="submit-wrapper input-wrapper">
+                <input class="submit-done" type="submit" value="{% trans "Done" %}"/>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

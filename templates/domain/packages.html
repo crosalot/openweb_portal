@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Select Package" %}|Openweb{% endblock %}
+
+{% block content_top %}
+<div id="pass-step-wrapper">
+    <div id="pass-step-domain" class="pass-step">
+        <div class="pass-label">1</div>
+        <div id="pass-step-domain-box" class="pass-box">
+            <span class="prefix">{{ domain_prefix }}</span><span class="suffix">.{{ domain_suffix }}</span>
+        </div>
+        <div id="pass-step-domain-desc" class="pass-desc">
+            {% trans "Website name" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content_main %}
+<div id="package-wrapper">
+    <div id="step-2" class="step-wrapper">{# For style sheet add background image #}</div>
+    {% if user.is_authenticated %}
+    <form action="{% url build %}" method="POST">
+        {% csrf_token %}
+    {% else %}
+    <form action="{% url build %}" method="GET">
+    {% endif %}
+        <h2>{% trans "Select Package" %}</h2>
+        <div class="submit-wrapper input-wrapper">
+            {% if user.is_authenticated %}
+            <input class="submit-done" type="submit" value="{% trans "Done" %}"/>
+            {% else %}
+            <input class="submit-next" type="submit" value="{% trans "Next" %}"/>
+            {% endif %}
+        </div>
+        <div class="clear"></div>
+        <div id="package-list-wrapper" class="input-wrapper">
+            {% for package in packages %}
+            <a href="#{{ package.code }}" class="package-item" id="{{ package.code }}">
+                <img 
+                    src="{{ package.image.url }}" 
+                    alt="{{ package.code }}" 
+                    title="{{ package.name }}" 
+                />
+            </a>
+            {% endfor %}
+        </div>
+        <input type="hidden" name="domain" value="{{ domain_prefix }}" />
+        <input id="package-code" type="hidden" name="package" value="" />
+        <div class="clear"></div>
+        <div class="submit-wrapper input-wrapper">
+            {% if user.is_authenticated %}
+            <input class="submit-done" type="submit" value="{% trans "Done" %}"/>
+            {% else %}
+            <input class="submit-next" type="submit" value="{% trans "Next" %}"/>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+var package_init = function() {
+    var package_code = window.location.hash.substr(1);
+    jQuery('#package-code').val(package_code);
+    jQuery('.package-item').removeClass('active');
+    jQuery('#' + package_code).addClass('active');
+}
+$(window).bind('hashchange', package_init);
+package_init();
+</script>
+{% endblock %}

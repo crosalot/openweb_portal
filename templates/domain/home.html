@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Openweb{% endblock %}
+
+{% block content_main %}
+<div id="front-wrapper">
+    <div id="feature-wrapper">
+        {# For style sheet add background image #}
+        OPENWEB<br />TEASER
+    </div>
+    <div id="opacity-wrapper">
+        <div id="domain-wrapper">
+            <form action="{% url packages %}" method="GET">
+                <h2>{% trans "Create New Website" %}</h2>
+                <div id="step-1" class="step-wrapper input-wrapper">{# For style sheet add background image #}</div>
+                <div id="domain-name-wrapper" class="input-wrapper{% if error %} error{% endif %}">
+                    <label for="domain-name">{% trans "your-website-name" %}</label>
+                    <input id="domain-name" type="text" name="domain" value="{{ domain_prefix }}" />
+                    <span id="domain-suffix">.{{ domain_suffix }}</span>
+                </div>
+                <div class="submit-wrapper input-wrapper">
+                    <input class="submit-next" type="submit" value="{% trans "Next" %}"/>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+var domain_label = jQuery('#domain-name-wrapper label');
+var domain_input = jQuery('#domain-name-wrapper input')
+domain_input
+    .focus(function () {
+        domain_label.hide();
+    })
+    .blur(function () {
+        if (!jQuery(this).val()) {
+            domain_label.show();
+        }
+    });
+jQuery('#domain-name-wrapper').click(function () {
+    domain_input.focus();
+})
+domain_input.focus()
+</script>
+{% endblock %}

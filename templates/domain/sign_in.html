@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Sign In" %}|Openweb{% endblock %}
+
+{% block content_main %}
+<div id="auth-wrapper">
+    <form id="sign-in-form" action="{% url sign_in %}" method="POST">
+        {% csrf_token %}
+        <h2>{% trans "Sign in" %}</h2>
+        <div id="sign-in-wrapper" class="input-wrapper">
+            <ul>
+            {{ sign_in_form.as_ul }}
+            </ul>
+        </div>
+        <div class="submit-wrapper input-wrapper">
+            <input class="submit-submit" type="submit" value="{% trans "Sign In" %}"/>
+        </div>
+    </form>
+</div>
+{% endblock %}

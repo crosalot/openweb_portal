@@ -1,37 +1,41 @@
+{% load i18n %}
+{% load domain_tags %}
 <!DOCTYPE HTML>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css"/>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.4.min.js"></script>
     </head>
     <body>
         <div id="site-wrapper">
-            <div id="site-name"><h1><a href="{% url home %}">OpenWeb.in.th</a></h1></div>
+            <div id="site-name"><h1><a href="{% url home %}">OpenWeb</a></h1></div>
         </div>
+        <div class="clear"></div>
         <div id="user-wrapper">
             {% if user.is_authenticated %}
             <div class="logged-in">
-                <span>Hello {{ user.username }}<span>
-                <a class="accounts-logout" href="/accounts/logout/">Sign out</a>
+                <span>{% trans "Hello" %} {{ user.username }}<span> | <a class="accounts-sign-out" href="{% url sign_out %}">{% trans "Sign out" %}</a>
             </div>
             {% else %}
             <div class="logged-out">
-                <a class="accounts-login" href="/accounts/login/">Sign in</a>
-                <a class="accounts-register" href="/accounts/register/">Register</a>
+                <a class="accounts-sign-in" href="{% url sign_in %}">{% trans "Sign in" %}</a> | <a class="accounts-register" href="{% url register %}">{% trans "Register" %}</a>
             </div>
             {% endif %}
         </div>
+        <div class="clear"></div>
         <div id="navi-wrapper">
             <ul id="primary-menu">
-                <li><a href="{% url home %}"></a>Home</li>
-                <li><a href="#"></a>Feature</li>
-                <li><a href="#"></a>Example</li>
-                <li><a href="#"></a>Webboard</li>
-                <li><a href="#"></a>Blog</li>
-                <li><a href="#"></a>Document</li>
+                <li><a href="{% url home %}">{% trans "Home" %}</a></li>
+                <li><a href="#">Feature</a></li>
+                <li><a href="#">Example</a></li>
+                <li><a href="#">Webboard</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Document</a></li>
             </ul>
         </div>
+        <div class="clear"></div>
         <div id="container-wrapper">
             <div id="messages-wrapper">
                 {% if messages %}
@@ -42,13 +46,20 @@
                 </ul>
                 {% endif %}
             </div>
-            <div id="top-wrapper">
-                {% block top %}{% endblock %}
+            <div class="clear"></div>
+            {% captureas content_top %}{% spaceless %}{% block content_top %}{% endblock %}{% endspaceless %}{% endcaptureas %}
+            {% if content_top %}
+            <div id="content-top-wrapper">
+                {{ content_top }}
             </div>
-            <div id="content-wrapper">
-                {% block content %}{% endblock %}
+            {% endif %}
+            <div class="clear"></div>
+            <div id="content-main-wrapper">
+                {% block content_main %}{% endblock %}
             </div>
+            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
         <div id="footer-wrapper">
             {% block footer %}{% endblock %}
         </div>
