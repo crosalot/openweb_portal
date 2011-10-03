@@ -163,7 +163,6 @@ SYSTEM_NOREPLY_EMAIL = EMAIL_HOST_USER
 # openweb portal settings
 OW_USER     = 'openweb'
 OW_APACHE   = '/usr/sbin/apache2ctl'
-OW_AVAHI    = '/usr/local/bin/avahi-alias'
 OW_PLATFORM = '/home/openweb/platforms/'
 OW_VHOST    = '/home/openweb/vhost.d/'
 OW_SITES    = '/home/openweb/sites/'

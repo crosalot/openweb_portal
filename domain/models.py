@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 
 import datetime, random, hashlib
 
-SYSTEM_CHOICES = (('drupal', 'Drupal'), ('wordpress', 'Wordpress'), ('joomla', 'Joomla'))
+SYSTEM_CHOICES = (('drupal', 'Drupal'), ('wordpress', 'Wordpress'), ('joomla', 'Joomla'), ('other', 'Other'))
 
 class UserProfile(models.Model):
     user           = models.OneToOneField(User)
@@ -17,12 +17,23 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Package(models.Model):
+    INACTIVE = 0
+    ACTIVE   = 1
+
+    STATUS_CHOICES = (
+        (ACTIVE,   'Active'), 
+        (INACTIVE, 'Inactive'), 
+    )
+
     code        = models.CharField(max_length=128)
-    system      = models.CharField(max_length=128, choices=SYSTEM_CHOICES)
     name        = models.CharField(max_length=255, null=True, blank=True)
+    system      = models.CharField(max_length=128, choices=SYSTEM_CHOICES)
+    image       = models.ImageField(upload_to='images/packages/', null=True, blank=True)
     description = models.TextField(max_length=255, null=True, blank=True)
     link        = models.TextField(max_length=255, null=True, blank=True)
-    image       = models.ImageField(upload_to='images/packages/', null=True, blank=True)
+    created     = models.DateField(auto_now_add=True)
+    settings    = models.TextField(null=True, blank=True)
+    status      = models.IntegerField(default=ACTIVE, choices=STATUS_CHOICES)
 
     def __unicode__(self):
         return self.code
@@ -45,12 +56,17 @@ class Site(models.Model):
 
     # Fields
     name            = models.CharField(max_length=128)
-    system          = models.CharField(max_length=128, choices=SYSTEM_CHOICES)
     status          = models.IntegerField(default=QUEUE, choices=STATUS_CHOICES)
     package         = models.ForeignKey(Package)
     user            = models.ForeignKey(User)
     created         = models.DateField(auto_now_add=True)
     percent         = models.IntegerField(default=0)
+
+    # Info
+    dbname          = models.CharField(max_length=128, null=True, blank=True)
+    dbuser          = models.CharField(max_length=128, null=True, blank=True)
+    dbpass          = models.CharField(max_length=255, null=True, blank=True)
+    data            = models.TextField(null=True, blank=True) 
 
     def __unicode__(self):
         return self.name

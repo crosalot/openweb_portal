@@ -55,7 +55,6 @@ def create_site(request):
     package = Package.objects.get(code=request.POST.get('package'))
     Site.objects.create(
         name=request.POST.get('domain'),
-        system=package.system,
         status=Site.QUEUE,
         package=package,
         user=request.user
@@ -77,7 +76,7 @@ def packages(request):
     if not validate(request): return HttpResponseRedirect('/?error=1&domain=%s' % domain_prefix)
 
     domain_suffix =  settings.OW_DOMAIN
-    packages = Package.objects.all()
+    packages = Package.objects.filter(status=Package.ACTIVE).order_by('-created')
     return render_to_response('domain/packages.html', locals(), context_instance=RequestContext(request))
 
 def register(request):
