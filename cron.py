@@ -93,7 +93,6 @@ def create(site):
     site.percent = 65
     site.save()
 
-    print 'mysql -u%s -p%s %s < %s%s/db.sql' % (DB_USER, DB_PASS, DB_NAME, OW_PLATFORM, PACKAGE_CODE)
     os.system('mysql -u%s -p%s %s < %s%s/db.sql' % (DB_USER, DB_PASS, DB_NAME, OW_PLATFORM, PACKAGE_CODE))
 
     # Set state ======================================================
@@ -171,7 +170,7 @@ def run():
         try:
             while 1: time.sleep(60)
         except KeyboardInterrupt:
-            print "EVxiting"
+            print "Exiting"
 
 # Excute ===================
 run()
