@@ -164,6 +164,8 @@ ul.errorlist li {
 #domain-wrapper #domain-suffix {
   float: right;
 }
+#domain-name {
+  outline: 0;
 
 /* Packages */
 #pass-step-domain-box {
