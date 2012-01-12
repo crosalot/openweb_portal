@@ -162,8 +162,9 @@ SYSTEM_NOREPLY_EMAIL = EMAIL_HOST_USER
 
 # openweb portal settings
 OW_USER     = 'openweb'
+OW_DOMAIN   = 'openweb.local'
 OW_APACHE   = '/usr/sbin/apache2ctl'
 OW_PLATFORM = '/home/openweb/platforms/'
 OW_VHOST    = '/home/openweb/vhost.d/'
 OW_SITES    = '/home/openweb/sites/'
-OW_DOMAIN   = 'openweb.local'
+OW_THEMES    = '/home/openweb/themes/'

@@ -1,4 +1,3 @@
-# Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -16,10 +15,17 @@ from domain.forms import *
 import datetime, random, sha
 
 import settings
+import cron
+
+
+from subprocess import Popen, PIPE
+import time
+import threading
 
 # ========================
 # Utility Functions
 # ========================
+
 
 # Validate all step function form URl and query
 def validate(request, validate_package=False):
@@ -59,6 +65,8 @@ def create_site(request):
         package=package,
         user=request.user
     )
+    thread = threading.Thread(target=cron.run)
+    thread.start()
 
 # ========================
 # Access from urls.py

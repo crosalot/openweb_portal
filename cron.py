@@ -173,4 +173,8 @@ def run():
             print "Exiting"
 
 # Excute ===================
-run()
+# run()
+if __name__ == '__main__':
+    for each in sys.argv[1:]:
+        if each == 'run':
+            run()

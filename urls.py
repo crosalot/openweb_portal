@@ -7,7 +7,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    # domain:
     url(r'^$', 'domain.views.home', name='home'),
     url(r'^packages/$', 'domain.views.packages', name='packages'),
     url(r'^build/$', 'domain.views.build', name='build'),
@@ -16,7 +16,9 @@ urlpatterns = patterns('',
     url(r'^sign-in/$', 'domain.views.sign_in', name='sign_in'),
     url(r'^sign-out/$', 'domain.views.sign_out', name='sign_out'),
     url(r'^ajax/get/site-percent/(?P<site_name>\w+)/$', 'domain.views.get_site_percent', name='get_site_percent'),
-    # url(r'^openweb_portal/', include('openweb_portal.foo.urls')),
+
+    #theme
+    url(r'^themes/$', 'theme.views.list', name='theme_list'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
